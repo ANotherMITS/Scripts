@@ -1,17 +1,10 @@
 #!/bin/bash
 
 WEBHOOK_URL="https://alerts.anotherit.co.uk/truenas"
-WEBHOOK_TOKEN="${WEBHOOK_TOKEN:-}"
-
-if [ -z "$WEBHOOK_TOKEN" ]; then
-    echo "ERROR: WEBHOOK_TOKEN is not set"
-    exit 1
-fi
 
 curl -fsS \
     -X POST \
     -H "Content-Type: application/json" \
-    -H "X-Webhook-Token: ${WEBHOOK_TOKEN}" \
     -d "$(jq -n \
         --arg client_name "$CLIENT_NAME" \
         --arg hostname "$(hostname)" \
